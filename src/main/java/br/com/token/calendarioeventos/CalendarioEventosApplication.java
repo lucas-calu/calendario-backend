@@ -1,4 +1,4 @@
-package br.com.token.CalendarioEventos;
+package br.com.token.calendarioeventos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

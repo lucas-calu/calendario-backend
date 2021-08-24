@@ -1,9 +1,6 @@
-package br.com.token.CalendarioEventos.entities;
-
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+package br.com.token.calendarioeventos.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
