@@ -2,21 +2,34 @@ package br.com.token.calendarioeventos.controller;
 
 import br.com.token.calendarioeventos.entities.EventoEntity;
 import br.com.token.calendarioeventos.repositories.EventoRepository;
+import br.com.token.calendarioeventos.services.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.awt.*;
 
 @RestController
 @RequestMapping("/eventos")
 public class EventoController {
-    @Autowired
-    EventoRepository repository;
 
-    @GetMapping("/{idEvento}")
-    public EventoEntity obterPorId(@PathVariable Long idEvento){
-        return repository.findById(idEvento).get();
+    @Autowired
+    EventoService service;
+
+    @GetMapping("/{id}")
+    public EventoEntity eventoPorId(@PathVariable("id") Long idEvento){
+        EventoEntity eventoFinal = service.obterPorId(idEvento);
+        return eventoFinal;
     }
 
+    @GetMapping()
+    public Iterable<EventoEntity> obterTodos(){
+        Iterable<EventoEntity> todos = service.obterTudo();
+        return todos;
+    }
+
+    @PostMapping()
+    public EventoEntity salvar(@RequestBody EventoEntity eventoParaSalvar){
+        EventoEntity salvo = service.salvarEvento(eventoParaSalvar);
+        return salvo;
+    }
 }
