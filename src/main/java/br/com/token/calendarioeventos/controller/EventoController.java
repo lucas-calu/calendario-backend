@@ -1,12 +1,9 @@
 package br.com.token.calendarioeventos.controller;
 
 import br.com.token.calendarioeventos.entities.EventoEntity;
-import br.com.token.calendarioeventos.repositories.EventoRepository;
 import br.com.token.calendarioeventos.services.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 
 @RestController
 @RequestMapping("/eventos")
@@ -32,4 +29,17 @@ public class EventoController {
         EventoEntity salvo = service.salvarEvento(eventoParaSalvar);
         return salvo;
     }
+
+    @PutMapping("/{id}")
+    public EventoEntity alterar(@PathVariable("id") Long id, @RequestBody EventoEntity eventoParaAlterar){
+        EventoEntity alterado = service.alterarEvento(id, eventoParaAlterar);
+        return alterado;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable("id") Long id){
+        service.deletar(id);
+
+    }
+
 }
