@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/eventos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EventoController {
 
     @Autowired
     EventoService service;
+
 
     @GetMapping("/{id}")
     public EventoEntity eventoPorId(@PathVariable("id") Long idEvento){
